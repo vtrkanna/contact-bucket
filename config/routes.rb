@@ -2,6 +2,18 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
   get 'dashboard' => 'home#dashboard'
+
+  resources :users do
+    get 'profile'
+  end
+
+  resources :contacts do
+    post 'make_communication_primary'
+    post 'make_address_primary'
+    post 'remove_communication_detail'
+    post 'remove_address_detail'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

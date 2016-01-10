@@ -1,7 +1,7 @@
 class AddressDetails < ActiveRecord::Migration
   def change
     create_table(:address_details) do |t|
-      t.integer :user_id, null: false
+      t.integer :contact_id, null: false
       t.string :address_type, default: "Home"
       t.boolean :active, default: false
       t.boolean :primary, default: false

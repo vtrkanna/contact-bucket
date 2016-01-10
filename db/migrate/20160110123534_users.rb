@@ -4,8 +4,6 @@ class Users < ActiveRecord::Migration
       t.string :first_name, null: false
       t.string :last_name
       t.boolean :active, default: false
-      t.integer :address_detail_id
-      t.integer :communication_detail_id
       t.integer :role_id
       t.datetime :created_by
       t.datetime :updated_by

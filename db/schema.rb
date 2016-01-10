@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160110131910) do
+ActiveRecord::Schema.define(version: 20160110180303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "address_details", force: :cascade do |t|
-    t.integer  "user_id",                       null: false
+    t.integer  "contact_id",                    null: false
     t.string   "address_type", default: "Home"
     t.boolean  "active",       default: false
     t.boolean  "primary",      default: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20160110131910) do
   end
 
   create_table "communication_details", force: :cascade do |t|
-    t.integer  "user_id",                               null: false
+    t.integer  "contact_id",                            null: false
     t.integer  "phone"
     t.string   "communication_type", default: "Mobile"
     t.boolean  "active",             default: false
@@ -58,6 +58,19 @@ ActiveRecord::Schema.define(version: 20160110131910) do
     t.datetime "updated_at",                            null: false
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.integer  "user_id",                    null: false
+    t.string   "first_name",                 null: false
+    t.string   "last_name"
+    t.string   "email",                      null: false
+    t.datetime "created_by"
+    t.datetime "updated_by"
+    t.boolean  "active",     default: false
+    t.integer  "sequence",   default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "countries", force: :cascade do |t|
     t.string   "name",                       null: false
     t.boolean  "active",     default: false
@@ -68,22 +81,20 @@ ActiveRecord::Schema.define(version: 20160110131910) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",                              null: false
+    t.string   "first_name",                             null: false
     t.string   "last_name"
-    t.boolean  "active",                  default: false
-    t.integer  "address_detail_id"
-    t.integer  "communication_detail_id"
+    t.boolean  "active",                 default: false
     t.integer  "role_id"
     t.datetime "created_by"
     t.datetime "updated_by"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.string   "email",                   default: "",    null: false
-    t.string   "encrypted_password",      default: "",    null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",           default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"

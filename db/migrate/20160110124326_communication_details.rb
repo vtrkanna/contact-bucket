@@ -1,7 +1,7 @@
 class CommunicationDetails < ActiveRecord::Migration
   def change
     create_table(:communication_details) do |t|
-      t.integer :user_id, null: false
+      t.integer :contact_id, null: false
       t.integer :phone, unique: true
       t.string :communication_type, default: "Mobile"
       t.boolean :active, default: false
